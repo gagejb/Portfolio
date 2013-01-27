@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Twitter Bootstrap/Kendo UI Grid Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="J. Blake Gage">
+    <link href="less/KendoUI/kendo.bootstrap.less" type="text/css" rel="stylesheet/less">
+    <link href="less/Bootstrap/bootstrap.less" type="text/css" rel="stylesheet/less">
+    <link href="less/Bootstrap/responsive.less" type="text/css" rel="stylesheet/less">
+    
+    <script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="js/KendoUI/kendo.all.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        less = {
+            env: "development", // or "production"
+            async: true,       // load imports async
+            fileAsync: false,   // load imports async when in a page under 
+                                // a file protocol
+            poll: 1000,         // when in watch mode, time in ms between polls
+            functions: {},      // user functions, keyed by name
+            dumpLineNumbers: "comments", // or "mediaQuery" or "all"
+            relativeUrls: false,// whether to adjust url's to be relative
+                                // if false, url's are already relative to the
+                                // entry less file
+        };
+    </script>
+    <script src="js/less-1.3.3.min.js" type="text/javascript"></script>
+    
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Twitter Bootstrap/Kendo UI Example</a>
+        </div>
+      </div>
+    </div>
+   
+    <div class="container">
+      
+      <div class="hero-unit">
+        <h1>Example Kendo UI Grid</h1>
+        <p>The following is a simple utilization of the Kendo UI grid functionality operating within the Twitter Bootstrap theme. Click &ldquo;See Grid&rdquo; below to enable the grid. Double-click on this button to hide the grid.</p>
+        <p><a class="btn btn-primary btn-large" onclick="showGrid();" ondblclick="hideGrid();">See Grid &raquo;</a></p>
+      </div>
+      <!-- Define the HTML div that will hold the Grid -->
+      <div id="grid" style="width: 350px; visibility: hidden">
+      </div>
+      
+      
+      <script language="javascript" type="text/javascript">
+       
+       function showGrid()
+       {
+          var kendoGrid = document.getElementById("grid");
+          kendoGrid.style.visibility='visible';
+       }
+       
+       function hideGrid()
+       {
+          var kendoGrid = document.getElementById("grid");
+          kendoGrid.style.visibility='hidden';
+       }
+       
+      $(document).ready(function(){
+          
+          var jsonDataSource =  new kendo.data.DataSource({
+            transport: {
+              read: {
+                url: "data/json/employee.data.json"
+              }
+           }
+        });
+        
+        $("#grid").kendoGrid({
+            columns:[
+              {
+                field: "FirstName",
+                title: "First Name",
+                width: "100px",
+                attributes: {
+                  style: "text-align: center"
+                }
+              },
+              {
+                field: "LastName",
+                title: "Last Name",
+                width: "100px",
+                attributes: {
+                  style: "text-align: center"
+                }
+              },
+              {
+                field: "PhoneNumber",
+                title: "Phone Number",
+                width: "150px",
+                attributes: {
+                  style: "text-align: center"
+                }
+              }
+            ],
+            dataSource: jsonDataSource
+        });
+      });
+      </script>
+      
+      
+
+      <hr>
+
+      <footer>
+        <p>&copy; J. Blake Gage 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- 
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   
+    <!--<script src="js/Bootstrap/bootstrap-transition.js"></script>
+    <script src="js/Bootstrap/bootstrap-alert.js"></script>
+    <script src="js/Bootstrap/bootstrap-modal.js"></script>
+    <script src="js/Bootstrap/bootstrap-dropdown.js"></script>
+    <script src="js/Bootstrap/bootstrap-scrollspy.js"></script>
+    <script src="js/Bootstrap/bootstrap-tab.js"></script>
+    <script src="js/Bootstrap/bootstrap-tooltip.js"></script>
+    <script src="js/Bootstrap/bootstrap-popover.js"></script>-->
+    <script src="js/Bootstrap/bootstrap-button.js"></script>
+    <!--<script src="js/Bootstrap/bootstrap-collapse.js"></script>
+    <script src="js/Bootstrap/bootstrap-carousel.js"></script>
+    <script src="js/Bootstrap/bootstrap-typeahead.js"></script>-->
+
+  </body>
+</html>
